@@ -8,7 +8,7 @@ module.exports = () => {
         done(null, user.id);
     });
 
-    passport.deserializeUser((id, done) => {
+    passport.deserializeUser((id, done) => {  //매개변수 id는 세션에 저장됨 값(req.session.passport.user)
         Member.findOne({ where: { id }})
         .then(user => done(null, user))
         .catch(err => done(err));

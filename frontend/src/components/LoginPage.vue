@@ -31,13 +31,15 @@ export default {
     methods: {
         login() {
             this.$http.post('/api/login', {
-                user: this.user
+                // user: this.user
+                userid: this.user.userid,
+                password: this.user.password,
             })
             .then((res) => {
                 if(res.data.success !== true) {
                     alert(res.data.msg);
                 } else {
-                    alert(`안녕하세요! ${res.data.userid}님`);
+                    alert('안녕하세요!');
                     this.$router.push('/calendar');
                 }
             })
