@@ -11,7 +11,7 @@
         </div>
         <button v-on:click="login">로그인</button>
         <p><button type="button" v-on:click="signUp">가입하기</button></p>
-        <p><button type="button" v-on:click="backPage">뒤로가기</button></p>
+        <p><button type="button" v-on:click="calPage">달력</button></p>
         <p><button type="button" v-on:click="kakaoLogin">카카오톡 로그인</button></p>
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
 
     methods: {
         login() {
-            this.$http.post('/api/login', {
+            this.$http.post('/login', {
                 // user: this.user
                 userid: this.user.userid,
                 password: this.user.password,
@@ -39,7 +39,7 @@ export default {
                 if(res.data.success !== true) {
                     alert(res.data.msg);
                 } else {
-                    alert('안녕하세요!');
+                    alert(`안녕하세요! ${res.data.user.userid}`);
                     this.$router.push('/calendar');
                 }
             })
@@ -50,11 +50,11 @@ export default {
         signUp() {
             this.$router.push('/signUp');
         },
-        backPage() {
-            this.$router.go(-1);
+        calPage() {
+            this.$router.push('/calendar');
         },
         kakaoLogin() {
-            this.$http.get('/api/kakao')
+            this.$http.get('/kakao')
             .then((res) => {
                 
             })

@@ -8,11 +8,11 @@ module.exports = () => {
   passport.use(new LocalStrategy({
     usernameField: 'userid',
     passwordField: 'password',
-  }, async (userid, password, done) => {
+  }, async (username, password, done) => {
     try {
-      console.log("local에서 userid", userid);
+      console.log("local에서 userid", username);
 
-      const exUser = await Member.findOne({ where: { userid } });
+      const exUser = await Member.findOne({ where: { userid: username } });
       if (exUser) {
         const result = await bcrypt.compare(password, exUser.userpw);
         if (result) {

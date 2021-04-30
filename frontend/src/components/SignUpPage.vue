@@ -32,15 +32,18 @@ export default {
 
     methods: {
         signUp() {
-            this.$http.post('/api/signUp', {
+            this.$http.post('/signUp', {
                 user: this.user
             })
             .then((res) => {
                 console.log("vue 페이지=",res.data);   
                 if(res.data.success === true) {
-                    alert("가입 성공!")
+                    alert("가입 성공!");
                     this.$router.push('/login');
-                }             
+                } else {
+                    alert("가입 실패");
+                    this.$router.replace('/signUp');
+                }            
             })
             .catch((err) => {
                 alert('가입 실패!!!!');
