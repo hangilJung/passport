@@ -2,12 +2,16 @@
     <div>
         <h1>사용자 정보를 입력하세요.</h1>
         <div class="input_row">
-            <label for="id">아이디</label>
-            <input type="text" id="id" placeholder="아이디를 입력하세요." v-model="user.userid" >
+            <div class="input_center">
+                <label for="id">아이디</label>
+                <input type="text" id="id" placeholder="아이디를 입력하세요." v-model="user.userid" >
+            </div>    
         </div>
         <div class="input_row">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" placeholder="비밀번호를 입력하세요." v-model="user.password">
+            <div class-="input_center">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" placeholder="비밀번호를 입력하세요." v-model="user.password">
+            </div>
         </div>
         <button v-on:click="login">로그인</button>
         <p><button type="button" v-on:click="signUp">가입하기</button></p>
@@ -66,3 +70,5 @@ export default {
     }
 }
 </script>
+<style scoped>
+</style>

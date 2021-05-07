@@ -7,6 +7,8 @@ const nunjucks = require('nunjucks');
 var logger = require('morgan');
 const dotenv = require('dotenv');
 const passport = require('passport');
+const MySQLStore = require('express-mysql-session')(session);
+
 dotenv.config();
 
 const home = require('./routes');
@@ -41,9 +43,18 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: process.env.COOKIE_SECRET,
+  store: new MySQLStore({
+    host    : process.env.SESSIONSTORE_HOST,
+    port    : process.env.SESSIONSTORE_PORT,
+    user    : process.env.SESSIONSTORE_USER,
+    password: process.env.SESSIONSTORE_PASSWORD,
+    database: process.env.SESSIONSTORE_DATABASE,
+    clearExpired: true,
+    checkExpirationInterval: process.env.SESSIONSTORE_CHECKEXPIRATIONINTERVAL
+  }),
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: false,    
   },
 }));
 app.use(passport.initialize());

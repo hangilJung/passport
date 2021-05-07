@@ -43,6 +43,7 @@ export default {
                 } else {
                     alert("가입 실패");
                     this.$router.replace('/signUp');
+                    
                 }            
             })
             .catch((err) => {

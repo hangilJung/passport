@@ -24,7 +24,7 @@ module.exports = () => {
         done(null, false, { msg: '가입되지 않은 회원입니다.' });
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
       done(error); //db조회중 에러 발생할 경우
     }
   }));
